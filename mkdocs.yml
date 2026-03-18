@@ -1,7 +1,7 @@
 site_name: Interpreting Machine Learning
 nav:
   - Home: index.md
-  - Chapter 1 - Introduction: chapter1.md
+  - Chapter 1 - Introduction: docs/chapter1/chapter1.md
   - Chapter 2 - Regulations: chapter2.md
   - Chapter 3 - Feature-based Explanations: chapter3.md
   - Chapter 4 - Constrastive and Counterfactual Expanations: chapter4.md
