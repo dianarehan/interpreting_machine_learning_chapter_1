@@ -1,0 +1,5 @@
+site_name: Interpreting Machine Learning
+nav:
+  - Home: index.md
+theme:
+  name: material
