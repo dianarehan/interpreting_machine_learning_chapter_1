@@ -12,7 +12,7 @@ These situations are not hypothetical. They happen today. And they are exactly w
 
 Modern machine learning systems can classify images, recommend products, detect fraud, and support medical decisions with impressive accuracy. But high accuracy alone does not mean a system is safe, fair, or trustworthy. In many real-world settings, the problem is not *that* a model produces answers. It is that it produces them in ways no one can properly inspect, question, or challenge.
 
-This chapter walks you through the core ideas behind that problem. By the end, you will understand what the "black box" problem is, why explainability matters in practice, who actually needs explanations, what makes an explanation *good*, and how this field connects to bigger ideas about trust, fairness, and accountability.
+This chapter explains the core ideas behind that problem in a simple way. It introduces the black box problem, why explainability matters in practice, who needs explanations, what makes an explanation *good*, and how the topic connects to trust, fairness, and accountability.
 
 ---
 
@@ -62,11 +62,11 @@ Lipton (2018) adds a useful warning: "interpretability" is not a single property
 
 ### The key idea: incompleteness
 
-Doshi-Velez and Kim (2017) make a foundational argument that shapes how the entire field thinks about explainability: the need for interpretation arises from **incompleteness in the problem formalization**. This is worth unpacking carefully, because it is easy to misread.
+Doshi-Velez and Kim (2017) make an important argument that still shapes how people think about explainability: the need for interpretation arises from **incompleteness in the problem formalization**. Put simply, the problem we write down is often narrower than the one we actually care about.
 
 When we train a machine learning model, we give it an objective, usually something measurable like minimizing a loss function or maximizing accuracy on a test set. The assumption is that optimizing that objective will produce a system that does what we actually want. But that assumption often breaks down. The mathematical objective we write down is almost never a complete description of everything we care about. It is a proxy, a simplified stand-in for a far richer set of human values, safety requirements, fairness constraints, and contextual expectations.
 
-Doshi-Velez and Kim identify several types of situations where this incompleteness appears. Scientific understanding is one: when the goal is knowledge acquisition rather than pure prediction, an accurate model that cannot explain *why* it works is of limited value to a researcher trying to understand a phenomenon. Multi-objective trade-offs are another: in cases where important competing goals, such as privacy versus predictive accuracy, cannot be fully captured in a single objective function, interpretability helps humans understand and navigate those tensions. Perhaps most importantly, incompleteness arises whenever unquantified biases are present. When the problem formalization cannot fully specify what "fair" or "safe" or "reliable" means, because those concepts depend on context, judgment, and values that resist clean mathematical encoding, then optimizing the formal objective can produce a model that scores well on paper while violating the real intent in ways that remain invisible without structured inspection (Doshi-Velez and Kim, 2017).
+Doshi-Velez and Kim identify several types of situations where this incompleteness appears. Scientific understanding is one: when the goal is knowledge acquisition rather than pure prediction, an accurate model that cannot explain *why* it works is of limited value to a researcher trying to understand a phenomenon. Multi-objective trade-offs are another: in cases where important competing goals, such as privacy versus predictive accuracy, cannot be fully captured in a single objective function, interpretability helps humans understand and navigate those tensions. The same issue appears when the problem formalization cannot fully specify what "fair" or "safe" or "reliable" means, because those concepts depend on context, judgment, and values that resist clean mathematical encoding. In those cases, optimizing the formal objective can produce a model that scores well on paper while still violating the real intent in ways that remain invisible without structured inspection (Doshi-Velez and Kim, 2017).
 
 This is a different kind of problem from ordinary *uncertainty*. Uncertainty can often be measured and communicated; a classifier might output a probability score reflecting its confidence. Incompleteness is harder to handle. It refers to the gap between what we can formally specify and what we actually want, and that gap cannot always be closed by collecting more data or tuning more parameters. That is exactly where XAI steps in: explanations are one of the tools that let humans detect and manage the effects of that gap (Doshi-Velez and Kim, 2017).
 
@@ -154,7 +154,7 @@ From the perspective of affected individuals, accountability is closely tied to 
 
 Accountability is also a legal question. Goodman and Flaxman's (2017) analysis of the GDPR popularized the debate over a "right to explanation." The more precise point is that EU data protection law gives individuals rights against certain forms of solely automated decision-making, including rights to obtain human intervention, express a point of view, and contest the decision under Article 22 (Goodman and Flaxman, 2017; GDPR, 2016).
 
-The EU AI Act (2024) goes further, organizing the entire regulatory framework around a four-level risk pyramid. Understanding how that pyramid works is important for anyone thinking about where XAI fits in real deployments.
+The EU AI Act (2024) goes further and organizes the regulatory framework around a four-level risk pyramid. That pyramid gives a practical way to see where explainability matters most in real deployments.
 
 ![The EU AI Act risk pyramid, showing four tiers from bottom to top: Minimal Risk, Limited Risk, High Risk, and Unacceptable Risk.](images/ai_risk_pyramid.png)
 *Figure: The EU AI Act risk pyramid. Source: [European Commission](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)*
@@ -173,7 +173,7 @@ The important idea for XAI is that transparency, documentation, traceability, an
 
 ## 7. Case Studies: When Black Boxes Fail
 
-Abstract arguments become much more vivid when you look at real cases. The following three examples each illustrate a different dimension of how black box behavior can fail in practice.
+The idea becomes clearer when you look at real cases. The next three examples show different ways black box systems can fail in practice.
 
 ### 7.1 Shortcut learning: wolves, huskies, and snow
 
@@ -193,7 +193,7 @@ These three cases support the same conclusion from different angles: explainabil
 
 ## 8. Evaluating Interpretability
 
-If interpretability matters so much, how should it be evaluated? Doshi-Velez and Kim (2017) offer one of the clearest and most cited frameworks for thinking about this rigorously. Their key argument is that the field often makes claims about interpretability without matching those claims to appropriate evidence, and that the type of evaluation used should depend on what is actually being claimed.
+If interpretability matters so much, how should it be evaluated? Doshi-Velez and Kim (2017) offer a useful framework for thinking about that question. Their main point is simple: people often make claims about interpretability without the right kind of evidence, and the evaluation should match the claim being made.
 
 ![Taxonomy of evaluation approaches for interpretability, showing three levels: Application-grounded (Real Humans, Real Tasks), Human-grounded (Real Humans, Simple Tasks), and Functionally-grounded (No Real Humans, Proxy Tasks). Higher levels are more specific and costly.](images/eval_taxonomy.png)
 *Figure: Taxonomy of evaluation approaches for interpretability (Doshi-Velez and Kim, 2017)*
@@ -260,9 +260,9 @@ Explainable AI begins from a simple observation: good predictions are not enough
 
 In many real-world tasks, the formal objective captures only part of what humans care about. Safety, fairness, scientific understanding, contestability, and institutional accountability often remain outside the metric. That gap, which Doshi-Velez and Kim call the incompleteness of the problem formalization, is what makes explanation necessary.
 
-The motivation for XAI is therefore broader than a vague desire for "transparency." It is a response to incompleteness, hidden shortcuts, and the need for models that can be inspected, challenged, and responsibly integrated into human decision-making. Black box systems are not problematic merely because they are complex. They are problematic when their complexity prevents people from determining whether the system is reasoning well, failing dangerously, or exercising power without adequate justification.
+The motivation for XAI is therefore broader than a vague desire for "transparency." It is a response to incomplete objectives, hidden shortcuts, and the need for models that people can inspect, question, and use responsibly. Black box systems are not a problem simply because they are complex. They become a problem when that complexity makes it hard to tell whether the system is reasoning well, failing in a dangerous way, or making decisions without enough justification.
 
-As machine learning moves deeper into socially significant domains, explainability becomes part of how we align technical systems with human goals. It helps improve models, supports users, protects affected individuals, and strengthens the conditions under which automated decisions can be trusted. For those reasons, XAI is not a peripheral concern in modern AI. It is one of the field's central responses to the limits of prediction alone.
+As machine learning moves into more socially important settings, explainability becomes part of making these systems answer to human goals. It helps improve models, supports the people using them, and gives affected individuals a better chance to understand or challenge important decisions. That is why XAI is not a side issue in modern AI. It is one of the field's main responses to the limits of prediction alone.
 
 ---
 
