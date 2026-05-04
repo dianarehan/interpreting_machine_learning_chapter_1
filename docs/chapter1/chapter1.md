@@ -1,5 +1,7 @@
 # Chapter 1 - Motivation for Explainable AI
 
+Diana Elzeftawy
+
 Modern machine learning systems can classify images, recommend products, detect fraud, and support medical decisions with impressive accuracy. Yet high predictive performance does not automatically mean that a system is safe, fair, reliable, or worthy of human trust. In many real-world settings, the main problem is not that a model produces answers, but that it produces them in ways that humans cannot properly inspect, question, or contest. This is the central motivation for explainable artificial intelligence (XAI).
 
 The rise of XAI is therefore not just a technical trend. It is a response to a broader failure in the way machine learning systems are often evaluated. Accuracy, loss, and benchmark performance matter, but they do not capture everything humans care about. When an AI system is used in hiring, medicine, criminal justice, public administration, or scientific research, people also want to know whether the model is using sensible evidence, whether it is relying on hidden shortcuts, whether it can be challenged, and whether its decisions can be justified to those affected by them. This chapter introduces the main ideas behind that demand. It explains what the "black box" problem is, why explainability becomes necessary, who needs explanations, what makes an explanation useful, and why interpretability is tied to trust, accountability, and the historical development of AI itself.
@@ -172,3 +174,15 @@ As machine learning moves deeper into socially significant domains, explainabili
 14. Regulation (EU) 2024/1689 of the European Parliament and of the Council (Artificial Intelligence Act). Official text: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
 15. Ribeiro, M. T., Singh, S., and Guestrin, C. (2016). *"Why Should I Trust You?": Explaining the Predictions of Any Classifier*. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135-1144. Preprint: https://arxiv.org/abs/1602.04938
 16. Zech, J. R., Badgeley, M. A., Liu, M., Costa, A. B., Titano, J. J., and Oermann, E. K. (2018). *Variable generalization performance of a deep learning model to detect pneumonia in chest radiographs: A cross-sectional study*. PLOS Medicine, 15(11), e1002683. https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002683
+
+To cite this, please use the following bibtex:
+
+```bibtex
+@misc{elzeftawy_2026_XAI,
+  author       = {Diana Elzeftawy},
+  title        = {Interpreting Machine Learning: A Gentle Introduction, Chapter 1},
+  year         = {2026},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/amrmsab/interpreting_machine_learning}},
+}
+```
