@@ -2,6 +2,8 @@
 
 **Author:** [Diana Elzeftawy](https://www.linkedin.com/in/diana-rehan)
 
+*This chapter is part of [Interpreting Machine Learning](https://amrmsab.github.io/interpreting_machine_learning/), a collaborative open book written as part of a graduate seminar.*
+
 ---
 
 Imagine you apply for a loan. A few seconds later, a system tells you: *rejected*. No reason. No explanation. Just a number, and a door closed in your face.
@@ -32,7 +34,7 @@ Machine learning models can behave in exactly the same way. A classifier might a
 
 ### The wolf-and-husky problem
 
-A famous example in XAI teaching goes like this: a classifier is trained to distinguish wolves from huskies. It performs well. But when you look at *why* it is making those decisions, using explanation techniques we will explore in later chapters, you discover it is mostly looking at the **background** of the image. Wolves tend to appear in snowy scenes; huskies often do not. The model learned a background shortcut instead of learning what the animal actually looks like (Ribeiro et al., 2016; Molnar, 2024).
+A famous example in XAI teaching goes like this: a classifier is trained to distinguish wolves from huskies. It performs well. But when you look at *why* it is making those decisions, using explanation techniques we will explore in later chapters ([Chapter 3: Feature-based Explanations](https://amrmsab.github.io/interpreting_machine_learning/chapter3/chapter3/), [Chapter 4: Contrastive and Counterfactual Explanations](https://amrmsab.github.io/interpreting_machine_learning/chapter4/chapter4/)), you discover it is mostly looking at the **background** of the image. Wolves tend to appear in snowy scenes; huskies often do not. The model learned a background shortcut instead of learning what the animal actually looks like (Ribeiro et al., 2016; Molnar, 2024).
 
 That is a harmless example, but the implications are not harmless at all.
 
@@ -146,17 +148,17 @@ Interpretability is often linked to trust, but that relationship is more complic
 
 Trust therefore needs to be understood more carefully. Broadly, a person may want confidence in three things: that the model performs well outside the lab, that it is not systematically unfair, and that its mechanism is understandable enough to justify reliance. These are related but distinct concerns, and a model can do well on one and poorly on the others (Lipton, 2018).
 
-This is why accountability matters. The FAT/ML principles for accountable algorithms argue that there is always a human ultimately responsible for algorithmic systems and their consequences. "The algorithm did it" is not an acceptable excuse. Responsibility, explainability, auditability, and fairness all become part of a broader governance problem: if an automated system causes harm, who can inspect it, question it, and change it? (FAT/ML, 2016).
+This is why accountability matters. The Fairness, Accountability, and Transparency in Machine Learning (FAT/ML) principles for accountable algorithms argue that there is always a human ultimately responsible for algorithmic systems and their consequences. "The algorithm did it" is not an acceptable excuse. Responsibility, explainability, auditability, and fairness all become part of a broader governance problem: if an automated system causes harm, who can inspect it, question it, and change it? (FAT/ML, 2016).
 
 From the perspective of affected individuals, accountability is closely tied to *contestability*. A system is not meaningfully accountable if people cannot challenge its outcomes. That challenge requires more than access to source code. In many cases, affected individuals need an understandable explanation, a channel for recourse, and access to human review with real authority. Otherwise, explanation becomes symbolic rather than practical.
 
 ### The legal picture: GDPR and the EU AI Act
 
-Accountability is also a legal question. Goodman and Flaxman's (2017) analysis of the GDPR popularized the debate over a "right to explanation." The more precise point is that EU data protection law gives individuals rights against certain forms of solely automated decision-making, including rights to obtain human intervention, express a point of view, and contest the decision under Article 22 (Goodman and Flaxman, 2017; GDPR, 2016).
+Accountability is also a legal question. [Chapter 2](https://amrmsab.github.io/interpreting_machine_learning/chapter2/chapter2/) covers the regulatory landscape in depth. Goodman and Flaxman's (2017) analysis of the GDPR popularized the debate over a "right to explanation." The more precise point is that EU data protection law gives individuals rights against certain forms of solely automated decision-making, including rights to obtain human intervention, express a point of view, and contest the decision under Article 22 (Goodman and Flaxman, 2017; GDPR, 2016).
 
 The EU AI Act (2024) goes further and organizes the regulatory framework around a four-level risk pyramid. That pyramid gives a practical way to see where explainability matters most in real deployments.
 
-![The EU AI Act risk pyramid, showing four tiers from bottom to top: Minimal Risk, Limited Risk, High Risk, and Unacceptable Risk.](images/ai_risk_pyramid.png)
+![The EU AI Act risk pyramid, showing four tiers from bottom to top: Minimal Risk, Limited Risk, High Risk, and Unacceptable Risk.](https://amrmsab.github.io/interpreting_machine_learning/chapter1/images/ai_risk_pyramid.png)
 *Figure: The EU AI Act risk pyramid. Source: [European Commission](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)*
 
 **Minimal or no risk** sits at the base of the pyramid and covers the vast majority of AI systems currently used in the EU. The Act imposes no additional requirements on these systems. Spam filters and AI-enabled video games fall into this category. They may occasionally make errors, but those errors carry no serious consequences for people's rights or safety (EU AI Act, 2024).
@@ -195,7 +197,7 @@ These three cases support the same conclusion from different angles: explainabil
 
 If interpretability matters so much, how should it be evaluated? Doshi-Velez and Kim (2017) offer a useful framework for thinking about that question. Their main point is simple: people often make claims about interpretability without the right kind of evidence, and the evaluation should match the claim being made.
 
-![Taxonomy of evaluation approaches for interpretability, showing three levels: Application-grounded (Real Humans, Real Tasks), Human-grounded (Real Humans, Simple Tasks), and Functionally-grounded (No Real Humans, Proxy Tasks). Higher levels are more specific and costly.](images/eval_taxonomy.png)
+![Taxonomy of evaluation approaches for interpretability, showing three levels: Application-grounded (Real Humans, Real Tasks), Human-grounded (Real Humans, Simple Tasks), and Functionally-grounded (No Real Humans, Proxy Tasks). Higher levels are more specific and costly.](https://amrmsab.github.io/interpreting_machine_learning/chapter1/images/eval_taxonomy.png)
 *Figure: Taxonomy of evaluation approaches for interpretability (Doshi-Velez and Kim, 2017)*
 
 **Application-grounded evaluation** is the most realistic and demanding approach. It puts real users in their actual task setting and checks whether explanations really help. Suppose a system is designed to help radiologists detect lung cancer from CT scans. An application-grounded evaluation would recruit actual radiologists, have them use the model and its explanations in conditions close to real clinical work, and then measure the outcome: do they catch more errors? Do they override the model when it is wrong? Do they make safer decisions overall? This is the gold standard because it tests explanation where it matters most. The drawback is cost and complexity. Studies like this require domain experts, careful ethical design, and time (Doshi-Velez and Kim, 2017).
@@ -250,7 +252,13 @@ XAI can be understood as the modern response to that shift. In some cases, the r
 
 ## 10. From Motivation to Methods
 
-This chapter has focused on *why* explainability is needed, not on the full toolbox of techniques used to achieve it. That distinction matters. Before choosing a technique, one must first understand the purpose of explanation. Are we trying to debug a model, justify a decision, support recourse, discover scientific structure, or satisfy regulatory requirements? Different goals require different forms of explanation, and later chapters will address those methods in detail.
+This chapter has focused on *why* explainability is needed, not on the full toolbox of techniques used to achieve it. That distinction matters. Before choosing a technique, one must first understand the purpose of explanation. Are we trying to debug a model, justify a decision, support recourse, discover scientific structure, or satisfy regulatory requirements? Different goals require different forms of explanation, and the subsequent chapters address those methods in detail:
+
+- [Chapter 2: Regulations](https://amrmsab.github.io/interpreting_machine_learning/chapter2/chapter2/) — the legal and regulatory landscape surrounding XAI
+- [Chapter 3: Feature-based Explanations](https://amrmsab.github.io/interpreting_machine_learning/chapter3/chapter3/) — techniques like LIME and SHAP that attribute importance to input features
+- [Chapter 4: Contrastive and Counterfactual Explanations](https://amrmsab.github.io/interpreting_machine_learning/chapter4/chapter4/) — explaining decisions by asking "what would have to change?"
+- [Chapter 5: Example and Case-based Explanations](https://amrmsab.github.io/interpreting_machine_learning/chapter5/chapter5/) — using representative examples to explain model behaviour
+- [Chapter 6: Deep Learning Interpretability](https://amrmsab.github.io/interpreting_machine_learning/chapter6/chapter6/) — saliency maps and methods specific to neural networks
 
 ---
 
